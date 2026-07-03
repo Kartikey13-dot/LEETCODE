@@ -9,7 +9,7 @@ void dfs(vector<vector<int>>& graph,int node,int c,vector<int>& colors)
         int neigh=graph[node][i];
         if(colors[neigh]!=-1 && colors[neigh]==c)
         res=false;
-        if(colors[neigh]==-1)
+        if(colors[neigh]==-1 && colors[neigh]!=c)
         dfs(graph,neigh,1-c,colors);
     }
     return ;
