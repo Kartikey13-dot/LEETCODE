@@ -7,15 +7,15 @@ public:
 
         long long sum = 0;
         long long res = 0;
-
+ int low = 0;
+        int high = k - 1;
         // Build the first window
-        for(int i = 0; i < k; i++) {
+        for(int i = low; i <=high; i++) {
             sum += nums[i];
             mp[nums[i]]++;
         }
 
-        int low = 0;
-        int high = k - 1;
+        
 if(mp.size() == k)
                 res = max(res, sum);
 while(high < n)
