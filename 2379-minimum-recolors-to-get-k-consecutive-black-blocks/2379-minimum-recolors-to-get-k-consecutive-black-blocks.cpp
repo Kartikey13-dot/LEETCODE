@@ -5,7 +5,6 @@ public:
         int n=blocks.size();
         int high=k-1;
         int res=INT_MAX;
-        int ans=0;
         unordered_map<char,int> mp;
         for(int i=low;i<=high;i++)
         {
