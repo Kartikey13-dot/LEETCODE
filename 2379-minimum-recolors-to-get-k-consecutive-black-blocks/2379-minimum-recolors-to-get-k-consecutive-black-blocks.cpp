@@ -12,12 +12,12 @@ public:
            if(blocks[i]=='W')
            {
             mp['W']++;
-            ans=mp['W'];
+       
            }
         }
         while(high<n)
         {
-          res=min(ans,res);
+          res=min(mp['W'],res);
           if(blocks[low]=='W')
           mp['W']--;
           low++;
@@ -26,7 +26,7 @@ public:
           break;
           if(blocks[high]=='W')
           mp['W']++;
-          ans=mp['W'];
+         
         }
         return res;
     }
