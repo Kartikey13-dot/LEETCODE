@@ -1,26 +1,20 @@
 class Solution {
 public:
-    vector<int> dp;
-
-    bool solve(int idx, vector<int>& nums) {
+    bool canJump(vector<int>& nums) {
         int n = nums.size();
+        vector<bool> dp(n, false);
 
-        if (idx >= n - 1)
-            return true;
+        dp[n - 1] = true;
 
-        if (dp[idx] != -1)
-            return dp[idx];
-
-        for (int jump = 1; jump <= nums[idx]; jump++) {
-            if (solve(idx + jump, nums))
-                return dp[idx] = true;
+        for (int i = n - 2; i >= 0; i--) {
+            for (int jump = 1; jump <= nums[i] && i + jump < n; jump++) {
+                if (dp[i + jump]) {
+                    dp[i] = true;
+                    break;
+                }
+            }
         }
 
-        return dp[idx] = false;
-    }
-
-    bool canJump(vector<int>& nums) {
-        dp.assign(nums.size(), -1);
-        return solve(0, nums);
+        return dp[0];
     }
 };
