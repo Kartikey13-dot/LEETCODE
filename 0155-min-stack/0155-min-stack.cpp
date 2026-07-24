@@ -4,7 +4,7 @@ class MinStack {
     stack<int> st2;
     
 public:
-  int mini=INT_MAX;
+  
     MinStack() {
         
     }
