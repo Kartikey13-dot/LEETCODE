@@ -17,10 +17,10 @@ public:
         }
         while(!st.empty())
         {
-            char a=st.top();
-            d=a+d;
+            d += st.top();
             st.pop();
         }
+        reverse(d.begin(), d.end());
          return d;
     }
 };
