@@ -2,44 +2,38 @@ class Solution {
 public:
     vector<int> asteroidCollision(vector<int>& asteroids) {
         vector<int> ans;
-        int n = asteroids.size();
-
-        if (n == 0) return ans;
-
+        int n=asteroids.size();
         stack<int> st;
         st.push(asteroids[0]);
+        if (n == 0) return ans;
 
-        for (int i = 1; i < n; i++) {
-
-            if (asteroids[i] > 0) {
-                st.push(asteroids[i]);
-                continue;
+        for(int i=1;i<n;i++)
+        {
+            if(asteroids[i]>0)
+            {
+            st.push(asteroids[i]);
+            continue;
             }
-
-            bool destroyed = false;
-
-            while (!st.empty() && st.top() > 0 && st.top() < -asteroids[i])
+            
+               while (!st.empty() && st.top() > 0 && st.top() < -asteroids[i])
                 st.pop();
-
-            if (!st.empty() && st.top() > 0 && st.top() == -asteroids[i]) {
-                st.pop();
-                continue;
-            }
-
-            if (!st.empty() && st.top() > 0) {
+                if(!st.empty()&& st.top()>0 && st.top()==-(asteroids[i]))
+                {st.pop();
+                continue;}
+                 if (!st.empty() && st.top() > 0) {
                 // current asteroid is destroyed
                 continue;
             }
-
-            st.push(asteroids[i]);
+        
+                st.push(asteroids[i]);
+            
         }
-
-        while (!st.empty()) {
+        while(!st.empty())
+        {
             ans.push_back(st.top());
             st.pop();
         }
-
-        reverse(ans.begin(), ans.end());
+        reverse(ans.begin(),ans.end());
         return ans;
     }
 };
