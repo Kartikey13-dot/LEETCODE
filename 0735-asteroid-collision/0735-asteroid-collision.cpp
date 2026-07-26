@@ -21,7 +21,6 @@ public:
                 {st.pop();
                 continue;}
                  if (!st.empty() && st.top() > 0) {
-                // current asteroid is destroyed
                 continue;
             }
         
