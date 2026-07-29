@@ -8,61 +8,49 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
-
 class Solution {
 public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-        
-       ListNode* temp1 = l1;
-       ListNode* temp2 = l2;   // FIXED
-       
-       int sum = 0;
-       int digit;
-       int carry = 0;         // FIXED (initialize)
-       
-       ListNode* head = NULL;
-       ListNode* tail = NULL;
-       
-       // FIXED condition
-       while(temp1 != NULL || temp2 != NULL || carry != 0)
-       {
-          int val1 = 0;
-          int val2 = 0;
-          
-          if(temp1 != NULL)
-              val1 = temp1->val;
-              
-          if(temp2 != NULL)
-              val2 = temp2->val;
-          
-          // FIXED sum calculation
-          sum = val1 + val2 + carry;
-          
-          carry = sum / 10;
-          digit = sum % 10;
-          
-          // FIXED spelling
-          ListNode* newnode = new ListNode(digit);
-          
-          // FIXED variable name consistency
-          if(head == NULL)
-          {
-              head = newnode;
-              tail = newnode;
-          }
-          else
-          {
-              tail->next = newnode;
-              tail = newnode;
-          }
-          
-          if(temp1 != NULL)
-              temp1 = temp1->next;
-              
-          if(temp2 != NULL)
-              temp2 = temp2->next;
-       }
-       
-       return head;
+        ListNode* temp1=l1;
+        ListNode* temp2=l2;
+   
+        int carry=0;
+        ListNode* head=NULL;
+        ListNode* tail=NULL;
+        while(temp1!=NULL || temp2!=NULL )
+        {
+             int n1=0;
+    int n2=0;
+           if (temp1 != NULL)
+           n1 = temp1->val;
+
+if (temp2 != NULL)
+    n2 = temp2->val;
+            int sum=n1+n2+carry;
+            int digit=sum%10;
+            carry=sum/10;
+            ListNode* node=new ListNode(digit);
+            if(head==NULL)
+            {
+                head=node;
+                tail=node;
+            }
+            else
+            {
+                tail->next=node;
+                tail=node;
+            }
+            if(temp1!=NULL)
+           temp1= temp1->next;
+           if(temp2!=NULL)
+           temp2= temp2->next;
+        }
+          if (carry != 0) {
+            ListNode* node = new ListNode(carry);
+            tail->next = node;
+            tail = node;
+        }
+        return head;
+
     }
 };
