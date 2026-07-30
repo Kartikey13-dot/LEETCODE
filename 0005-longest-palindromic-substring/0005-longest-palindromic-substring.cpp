@@ -1,6 +1,6 @@
 class Solution {
 public:
-    int start ;
+    int start=0 ;
     int maxLen = -1;
 
     void expand(string &s, int left, int right) {
