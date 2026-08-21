@@ -1,32 +1,35 @@
 class Solution {
 public:
-void helper(vector<int>& candidates, int target,int sum,int start,vector<vector<int>>& ans,vector<int>& temp)
+void fun(vector<int>& candidates,int n,int idx,vector<int>& diary,vector<vector<int>>& ans,int target,int sum)
 {
-    if(sum > target)
-    return;
+        if(sum==target )
+    {
+        ans.push_back(diary);
+        return;
+    }
+    if(idx == n || sum > target)
+            return;
+    //don't take
+    fun(candidates,n,idx+1,diary,ans,target,sum);
+//take
+          sum+=candidates[idx];
+        diary.push_back(candidates[idx]);
+        fun(candidates,n,idx,diary,ans,target,sum);
+        diary.pop_back();
+        sum-=candidates[idx];
+        
+        
 
-    if(sum==target)
-    {
-        ans.push_back(temp);
-        return ;
-    }
-    for(int i=start;i<candidates.size();i++)
-    {
-        sum=sum+candidates[i];
-        temp.push_back({candidates[i]});
-        helper(candidates,target,sum,i,ans,temp);
-        sum=sum-candidates[i];
-        temp.pop_back();
-    }
-    return ;
+    return;
 }
     vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
-        
-        vector<vector<int>> ans;
-        vector<int> temp;
+         vector<vector<int>> ans;
+        vector<int> diary;
+        int n=candidates.size();
         int sum=0;
-        int start=0;
-        helper(candidates,target,sum,start,ans,temp);
-         return ans;
+
+        fun(candidates,n,0,diary,ans,target,sum);
+
+        return ans;
     }
 };
